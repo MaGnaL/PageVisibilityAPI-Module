@@ -9,19 +9,19 @@
 
 <p>Open console to check the functionality. Current state is: <span id="currentVisibilityState">unknown</span></p>
 
-<script src="PageVisModule.js"></script>
+<script src="pagevis.js"></script>
 <script>
-    pageVis.whenHidden(function(hidden, state)
+    pagevis.whenHidden(function(hidden, state)
     {
         document.getElementById('currentVisibilityState').innerText = state;
         console.log('currentVisibilityState: ' + state);
     });
-    pageVis.whenVisible(function(hidden, state)
+    pagevis.whenVisible(function(hidden, state)
     {
         document.getElementById('currentVisibilityState').innerText = state;
         console.log('currentVisibilityState: ' + state);
     });
-    pageVis.whenNotSupported(function()
+    pagevis.whenNotSupported(function()
     {
         document.getElementById('currentVisibilityState').innerText = 'NO SUPPORT';
         console.log('NO SUPPORT');

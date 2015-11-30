@@ -1,11 +1,11 @@
-;window.pageVis = (function(pageVis, document)
+;window.pagevis = (function(pagevis, document)
 {
     'use strict';
 
-    pageVis.whenVisibilityChanges = whenVisibilityChanges;
-    pageVis.whenHidden = whenHidden;
-    pageVis.whenVisible = whenVisible;
-    pageVis.whenNotSupported = whenNotSupported;
+    pagevis.whenVisibilityChanges = whenVisibilityChanges;
+    pagevis.whenHidden = whenHidden;
+    pagevis.whenVisible = whenVisible;
+    pagevis.whenNotSupported = whenNotSupported;
 
     var _support = false;
     var _hiddenPropName = null;
@@ -54,19 +54,11 @@
         {
             if (_support)
             {
-                callCallbacks(_callbacks);
-                if (getCurrentlyHidden())
-                {
-                    callCallbacks(_callbacksWhenHidden);
-                }
-                else
-                {
-                    callCallbacks(_callbacksWhenVisible);
-                }
+                callSupportedCallbacks();
             }
             else
             {
-                callCallbacks(_callbacksWhenNotSupported, false);
+                callNotSupportedCallbacks();
             }
         });
 
@@ -75,15 +67,7 @@
         {
             document.addEventListener(_eventName, function()
             {
-                callCallbacks(_callbacks);
-                if (getCurrentlyHidden())
-                {
-                    callCallbacks(_callbacksWhenHidden);
-                }
-                else
-                {
-                    callCallbacks(_callbacksWhenVisible);
-                }
+                callSupportedCallbacks();
             });
         }
     }
@@ -124,21 +108,37 @@
         _callbacksWhenNotSupported.push(callback);
     }
 
-    function callCallbacks (callbacks, withData)
+    function callSupportedCallbacks ()
     {
-        withData = withData || true;
+        callCallbacks(_callbacks);
+        if (getCurrentlyHidden())
+        {
+            callCallbacks(_callbacksWhenHidden);
+        }
+        else
+        {
+            callCallbacks(_callbacksWhenVisible);
+        }
+    }
+
+    function callCallbacks (callbacks)
+    {
         if (callbacks)
         {
             callbacks.forEach(function(callback)
             {
-                if (withData)
-                {
-                    callback(getCurrentlyHidden(), getCurrentVisibilityState());
-                }
-                else
-                {
-                    callback();
-                }
+                callback(getCurrentlyHidden(), getCurrentVisibilityState());
+            });
+        }
+    }
+
+    function callNotSupportedCallbacks ()
+    {
+        if (_callbacksWhenNotSupported)
+        {
+            _callbacksWhenNotSupported.forEach(function(callback)
+            {
+                callback();
             });
         }
     }
@@ -153,6 +153,6 @@
         return document[_statePropName];
     }
 
-    return pageVis;
+    return pagevis;
 
-})(window.pageVis || {}, window.document);
+})(window.pagevis || {}, window.document);
