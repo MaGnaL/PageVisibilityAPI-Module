@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PageVisibility Example</title>
+</head>
+<body>
+<h1>PageVisibility Example</h1>
+
+<p>Open console to check the functionality. Current state is: <span id="currentVisibilityState">unknown</span></p>
+
+<script src="PageVisModule.js"></script>
+<script>
+    pageVis.whenHidden(function(hidden, state)
+    {
+        document.getElementById('currentVisibilityState').innerText = state;
+        console.log('currentVisibilityState: ' + state);
+    });
+    pageVis.whenVisible(function(hidden, state)
+    {
+        document.getElementById('currentVisibilityState').innerText = state;
+        console.log('currentVisibilityState: ' + state);
+    });
+    pageVis.whenNotSupported(function()
+    {
+        document.getElementById('currentVisibilityState').innerText = 'NO SUPPORT';
+        console.log('NO SUPPORT');
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "page-visibility",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server --port=8000 --open=src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaGnaL/PageVisibilityAPI-Example.git"
+  },
+  "author": "TheMaGnaL",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaGnaL/PageVisibilityAPI-Example/issues"
+  },
+  "homepage": "https://github.com/MaGnaL/PageVisibilityAPI-Example#readme",
+  "devDependencies": {
+    "jasmine": "^2.3.2",
+    "live-server": "^0.8.2"
+  }
+}
