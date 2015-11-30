@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server --port=8000 --open=src"
+    "start": "live-server --port=8000 --open=src",
+    "build": "uglifyjs ./src/pagevis.js -mc > ./src/pagevis.min.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/MaGnaL/PageVisibilityAPI-Example#readme",
   "devDependencies": {
     "jasmine": "^2.3.2",
-    "live-server": "^0.8.2"
+    "live-server": "^0.8.2",
+    "uglify-js": "^2.6.1"
   }
 }
