@@ -1,6 +1,8 @@
-;window.pagevis = (function(pagevis, document)
+;(function(exports, document)
 {
     'use strict';
+
+    var pagevis = exports.pagevis = exports.pagevis || {};
 
     pagevis.whenVisibilityChanges = whenVisibilityChanges;
     pagevis.whenHidden = whenHidden;
@@ -152,7 +154,4 @@
     {
         return document[_statePropName];
     }
-
-    return pagevis;
-
-})(window.pagevis || {}, window.document);
+})(window, window.document);
