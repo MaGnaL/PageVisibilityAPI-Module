@@ -4,19 +4,19 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server --port=8000 --open=src",
+    "start": "live-server --port=8000 --open=./examples/plain",
     "build": "uglifyjs ./src/pagevis.js -mc > ./src/pagevis.min.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MaGnaL/PageVisibilityAPI-Example.git"
+    "url": "git+https://github.com/MaGnaL/PageVisibilityAPI-Module.git"
   },
-  "author": "TheMaGnaL",
+  "author": "Manuel Lang",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MaGnaL/PageVisibilityAPI-Example/issues"
+    "url": "https://github.com/MaGnaL/PageVisibilityAPI-Module/issues"
   },
-  "homepage": "https://github.com/MaGnaL/PageVisibilityAPI-Example#readme",
+  "homepage": "https://github.com/MaGnaL/PageVisibilityAPI-Module#readme",
   "devDependencies": {
     "jasmine": "^2.3.2",
     "live-server": "^0.8.2",

@@ -8,4 +8,4 @@ Please check src/index.html.
 
 ## To Do
 
-* add minified version
+* add exmaples

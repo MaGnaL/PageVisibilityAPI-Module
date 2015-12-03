@@ -1,9 +1,17 @@
-;(function(exports, document)
+/**
+ * @license
+ * PageVisibility Module v0.0.1
+ * (c) 2015 Manuel Lang (http://magnal.de)
+ * License: MIT
+ */
+(function(exports, document)
 {
     'use strict';
 
     var pagevis = exports.pagevis = exports.pagevis || {};
 
+    pagevis.currentlyHidden = undefined;
+    pagevis.currentVisibilityState = undefined;
     pagevis.whenVisibilityChanges = whenVisibilityChanges;
     pagevis.whenHidden = whenHidden;
     pagevis.whenVisible = whenVisible;
@@ -54,6 +62,9 @@
 
         document.addEventListener('DOMContentLoaded', function()
         {
+            updateCurrentlyHidden();
+            updateCurrentVisibilityState();
+
             if (_support)
             {
                 callSupportedCallbacks();
@@ -67,6 +78,9 @@
         // if support is available, register eventlistener
         if (_support)
         {
+            updateCurrentlyHidden();
+            updateCurrentVisibilityState();
+
             document.addEventListener(_eventName, function()
             {
                 callSupportedCallbacks();
@@ -113,7 +127,7 @@
     function callSupportedCallbacks ()
     {
         callCallbacks(_callbacks);
-        if (getCurrentlyHidden())
+        if (pagevis.currentlyHidden)
         {
             callCallbacks(_callbacksWhenHidden);
         }
@@ -129,7 +143,7 @@
         {
             callbacks.forEach(function(callback)
             {
-                callback(getCurrentlyHidden(), getCurrentVisibilityState());
+                callback(pagevis.currentlyHidden, pagevis.currentVisibilityState);
             });
         }
     }
@@ -145,13 +159,13 @@
         }
     }
 
-    function getCurrentlyHidden ()
+    function updateCurrentlyHidden ()
     {
-        return document[_hiddenPropName];
+        pagevis.currentlyHidden = document[_hiddenPropName];
     }
 
-    function getCurrentVisibilityState ()
+    function updateCurrentVisibilityState ()
     {
-        return document[_statePropName];
+        pagevis.currentVisibilityState = document[_statePropName];
     }
 })(window, window.document);
